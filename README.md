@@ -46,3 +46,10 @@ enum AutoLayoutAnchor {
 ```
 
 Each of the cases of the `AutoLayoutAnchor` represents an NSLayoutDimension. The properties of the anchor can be manipulated through by passing values through the `[Any]` array.
+
+Currently, the supported values are:
+1. `CGFloat`, `Int`, `Double`, `Float` for constant and multiplier properties
+2. `UIView` to set the specified view in which to set the anchor
+3. `Anchor` (another enum) to set the specified view's anchor type
+
+
