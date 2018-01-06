@@ -34,6 +34,8 @@ setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
 Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `addToView` function additionally adds the view as a subview to a specified view.
 
+The rules of NSLayoutAnchors, NSLayoutConstraints, and Auto Layout apply the exactly same. Background with Auto Layout helps to create constraints with AutoLayoutAnchor.
+
 ## Detailed Usage
 ### AutoLayoutAnchor
 AutoLayoutAnchor is an enum with associated values of `[Any]`. 
