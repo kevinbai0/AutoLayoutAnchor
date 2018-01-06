@@ -1,7 +1,7 @@
 # AutoLayoutAnchor
 Add a subview and its constraints in just one line of code. Reduces verbosity of NSLayoutAnchors while maintaining readability.
 
-Example of usage:
+## Example of usage:
 ```swift
 let view1 = UIView()
 view1.addToView(self.view, .left([10]), .right([-5, Anchor.centerX]), .top([28]), .bottom([Anchor.centerY, -10]))
@@ -19,8 +19,10 @@ view1.addToView(self.view,
 ```
 These two lines of code create a UIView, adds it to the view, and creates the constraints
 
+## Installation
 AutoLayoutAnchor is created in just one file and is an extension of UIView. To add to your project, simply clone the repository and drag the AutoLayoutAnchor.swift file and include it into your own XCode Project.
 
+## Usage
 The two main functions are: 
 ```swift
 addToView(_ view: UIView, _ anchors: AutoLayoutAnchor...)
