@@ -49,6 +49,8 @@ view1.addToView(self.view, //add to self.view
 )
 ```
 
+To be complete...
+
 ## Detailed Usage
 ### AutoLayoutAnchor
 AutoLayoutAnchor is an enum with associated values of `[Any]`. 
@@ -70,3 +72,5 @@ Currently, the supported values are:
 Although anything may be passed into the array, only the data types shown above are manipulated. Values can be passed into the array in any order but only 2 Number types (`CGFloat`, `Int`, `Float`, and `Double`) will be processed. The first number that is passed through is set as the constant. The second number passed through is set as the multiplier.
 
 *If you only want to pass a multiplier through, pass the value 0 (to set the constant to 0) before the multiplier value. Ex: `AutoLayoutAnchor.width([0, 0.5])`.*
+
+# To Be Completed
