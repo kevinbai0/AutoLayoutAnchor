@@ -1,6 +1,18 @@
 # AutoLayoutAnchor
 Add a subview and its constraints in just one line of code. Reduces verbosity of NSLayoutAnchors while maintaining readability.
 
+Example of a login page created using AutoAnchorLayouts:
+![alt text]()
+
+Only 5 lines of code are needed to set the constraints:
+```swift
+userTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([Anchor.centerY]), .height([0, 0.08]))
+        passTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([userTextField, Anchor.bottom, 10]), .height([0, 0.08]))
+        loginBtn.addToView(self, .centerX([]), .width([0,0.8]), .top([passTextField, Anchor.bottom, 10]), .height([0, 0.08]))
+        forgotPasswordButton.addToView(self, .top([30, loginBtn, Anchor.bottom]), .centerX([]), .width([0, 0.6]), .height([30]))
+        createAccountButton.addToView(self, .bottom([-20]), .centerX([]), .height([30]), .width([0, 0.6]))
+```
+
 ## Example of usage:
 ```swift
 let view1 = UIView()
