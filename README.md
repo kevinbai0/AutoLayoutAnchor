@@ -36,8 +36,18 @@ setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
 Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `addToView` function additionally adds the view as a subview to a specified view.
 
-Example - say `view1` is the subview and it is being added to `self.view` of the view controller:
-  After initializing view1, (`view1 = UIView()`), use the `addToView` function to add view1 to self.view and to set view1's  constraints.
+Example - say `view1` is the subview and it is being added to `self.view`:
+```swift
+view1.addToView(self.view, //add to self.view
+```
+`self.view` also becomes the default view to add constraints to.
+```swift
+  .left([])
+  .right([])
+  .top([])
+  .bottom([])
+)
+```
 
 ## Detailed Usage
 ### AutoLayoutAnchor
