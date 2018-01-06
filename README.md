@@ -22,7 +22,9 @@ These two lines of code create a UIView, adds it to the view, and creates the co
 ## Installation
 AutoLayoutAnchor is created in just one file and is an extension of UIView. To add to your project, simply clone the repository and drag the AutoLayoutAnchor.swift file and include it into your own XCode Project.
 
-## Usage
+## General Usage
+
+## Specifics
 
 ### Main Extensions of UIView
 ```swift
