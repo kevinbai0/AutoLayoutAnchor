@@ -20,3 +20,5 @@ view1.addToView(self.view,
 These two lines of code create a UIView, adds it to the view, and creates the constraints
 
 AutoLayoutAnchor is created in just one file and is an extension of UIView. To add to your project, simply clone the repository and drag the AutoLayoutAnchor.swift file and include it into your own XCode Project.
+
+The two main functions are: `addToView(_ view: UIView(), _ anchors: AutoLayoutAnchor...)` and `setConstraints(_anchors: AutoLayoutAnchor...)`.
