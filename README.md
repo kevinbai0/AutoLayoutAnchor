@@ -42,12 +42,7 @@ AutoLayoutAnchor is an enum with associated values of `[Any]`.
 enum AutoLayoutAnchor {
   case leading([Any]), trailing([Any]), left([Any]), centerX([Any]), right([Any]), top([Any]), 
   firstB([Any]), centerY([Any]),   lastB([Any]), bottom([Any]), width([Any]), height([Any])
-  
-  static func createConstraint(
-    firstAnchor: Anchor, 
-    originalAnchor: (NSLayoutXAxisAnchor?, NSLayoutYAxisAnchor?, NSLayoutDimension?), 
-    originalView: UIView?, 
-    array: [Any]
-  ) -> NSLayoutConstraint?
 }
 ```
+
+Each of the cases of the `AutoLayoutAnchor` represents an NSLayoutDimension. The properties of the anchor can be manipulated through by passing values through the `[Any]` array.
