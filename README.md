@@ -24,7 +24,7 @@ AutoLayoutAnchor is created in just one file and is an extension of UIView. To a
 
 ## Usage
 
-### Main Extensions
+### Main Extensions of UIView
 ```swift
 addToView(_ view: UIView, _ anchors: AutoLayoutAnchor...)
 ```
@@ -33,3 +33,7 @@ and
 setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
 Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `addToView` function additionally adds the view as a subview to a specified view.
+
+### AutoLayoutAnchor
+
+AutoLayoutAnchor is an enum with associated values of `[Any]`
