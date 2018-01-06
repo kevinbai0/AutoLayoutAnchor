@@ -10,11 +10,11 @@ view1.addToView(self.view, .left([10]), .right([-5, Anchor.centerX]), .top([28])
 or 
 
 ```swift
-view1.addToView(self.view, 
-  .left([10]), 
-  .right([-5, Anchor.centerX]), 
-  .top([28]), 
-  .bottom([Anchor.centerY, -10])
+view1.addToView(self.view, //adds view1 to self.view
+  .left([10]), //view1's left anchor is 10 points to the right of self.view's left anchor
+  .right([-5, Anchor.centerX]), //view1's right anchor is 5 points to the left of self.view's centerX anchor
+  .top([28]), //view1's top anchor is 28 points below of self.view's top anchor
+  .bottom([Anchor.centerY, -10]) //view1's bottom anchor is 10 points above self.view's centerY anchor
 )
 ```
 These two lines of code create a UIView, adds it to the view, and creates the constraints
