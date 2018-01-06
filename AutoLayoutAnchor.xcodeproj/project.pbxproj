@@ -14,6 +14,7 @@
 		486474492000A8EC0052352A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486474472000A8EC0052352A /* LaunchScreen.storyboard */; };
 		486474542000A8ED0052352A /* AutoLayoutAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486474532000A8ED0052352A /* AutoLayoutAnchorTests.swift */; };
 		4864745F2000A8ED0052352A /* AutoLayoutAnchorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4864745E2000A8ED0052352A /* AutoLayoutAnchorUITests.swift */; };
+		4864746D2000AAD40052352A /* AutoLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4864745A2000A8ED0052352A /* AutoLayoutAnchorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoLayoutAnchorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4864745E2000A8ED0052352A /* AutoLayoutAnchorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutAnchorUITests.swift; sourceTree = "<group>"; };
 		486474602000A8ED0052352A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutAnchor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				4864743E2000A8EC0052352A /* AppDelegate.swift */,
 				486474402000A8EC0052352A /* ViewController.swift */,
+				4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */,
 				486474422000A8EC0052352A /* Main.storyboard */,
 				486474452000A8EC0052352A /* Assets.xcassets */,
 				486474472000A8EC0052352A /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				486474412000A8EC0052352A /* ViewController.swift in Sources */,
 				4864743F2000A8EC0052352A /* AppDelegate.swift in Sources */,
+				4864746D2000AAD40052352A /* AutoLayoutAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
