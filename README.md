@@ -49,7 +49,7 @@ view1.addToView(self.view, //add to self.view
 )
 ```
 
-To be complete...
+To be completed...
 
 ## Detailed Usage
 ### AutoLayoutAnchor
