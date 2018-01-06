@@ -24,6 +24,8 @@ AutoLayoutAnchor is created in just one file and is an extension of UIView. To a
 
 ## General Usage
 ### Rules and Guidelines
+The rules of NSLayoutAnchors, NSLayoutConstraints, and Auto Layout apply the exactly same. Background with Auto Layout helps to create constraints with AutoLayoutAnchor.
+
 Always use `addToView()` or `setConstraints()` to when setting constraints.
 ```swift
 addToView(_ view: UIView, _ anchors: AutoLayoutAnchor...)
@@ -34,7 +36,8 @@ setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
 Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `addToView` function additionally adds the view as a subview to a specified view.
 
-The rules of NSLayoutAnchors, NSLayoutConstraints, and Auto Layout apply the exactly same. Background with Auto Layout helps to create constraints with AutoLayoutAnchor.
+Example - say `view1` is the subview and it is being added to `self.view` of the view controller:
+  After initializing view1, (`view1 = UIView()`), use the `addToView` function to add view1 to self.view and to set view1's  constraints.
 
 ## Detailed Usage
 ### AutoLayoutAnchor
