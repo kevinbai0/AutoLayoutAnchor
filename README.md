@@ -36,4 +36,10 @@ Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `add
 
 ### AutoLayoutAnchor
 
-AutoLayoutAnchor is an enum with associated values of `[Any]`
+AutoLayoutAnchor is an enum with associated values of `[Any]`. 
+
+```swift
+enum AutoLayoutAnchor {
+  case leading([Any]), trailing([Any]), left([Any]), centerX([Any]), right([Any]), top([Any]), firstB([Any]), centerY([Any]),   lastB([Any]), bottom([Any]), width([Any]), height([Any])
+  static func createConstraint(firstAnchor: Anchor, originalAnchor: (NSLayoutXAxisAnchor?, NSLayoutYAxisAnchor?, NSLayoutDimension?), originalView: UIView?, array: [Any]) -> NSLayoutConstraint?
+```
