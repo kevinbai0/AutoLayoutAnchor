@@ -52,6 +52,6 @@ Currently, the supported values are:
 2. `UIView` to set the specified view in which to set the anchor
 3. `Anchor` (another enum) to set the specified view's anchor type
 
-Although anythign may be passed into the array, the array only manipulates the data types shown above. Values can be passed into the array inany order but when processed, only 2 Number types (`CGFloat`, `Int`, `Float`, and `Double`) recognized. The first number that is passed through is set as the constant. The second number passed through is set as the multiplier.
+Although anything may be passed into the array, the array only manipulates the data types shown above. Values can be passed into the array inany order but when processed, only 2 Number types (`CGFloat`, `Int`, `Float`, and `Double`) recognized. The first number that is passed through is set as the constant. The second number passed through is set as the multiplier.
 
 *If you only want to pass a multiplier through, pass the value 0 (to set the constant to 0) before the multiplier value. Ex: `AutoLayoutAnchor.width([0, 0.5])`.*
