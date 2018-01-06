@@ -23,10 +23,10 @@ AutoLayoutAnchor is created in just one file and is an extension of UIView. To a
 
 The two main functions are: 
 ```swift
-addToView(_ view: UIView(), _ anchors: AutoLayoutAnchor...)
+addToView(_ view: UIView, _ anchors: AutoLayoutAnchor...)
 ```
 and
 ```swift
-setConstraints(_anchors: AutoLayoutAnchor...)
+setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
-
+Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The addToView additionally adds the view as a subview to a specified view.
