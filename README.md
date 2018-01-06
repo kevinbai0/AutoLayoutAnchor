@@ -29,4 +29,4 @@ and
 ```swift
 setConstraints(to view: UIView? = nil, _anchors: AutoLayoutAnchor...)
 ```
-Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The addToView additionally adds the view as a subview to a specified view.
+Both functions set `translatesAutoresizingMaskIntoConstraints = false`. The `addToView` function additionally adds the view as a subview to a specified view.
