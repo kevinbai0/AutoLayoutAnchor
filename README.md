@@ -2,7 +2,7 @@
 Add a subview and its constraints in just one line of code. Reduces verbosity of NSLayoutAnchors while maintaining readability.
 
 Example of a login page created using AutoAnchorLayouts:
-![alt text](https://i.imgur.com/p9RyyHz.png)
+![alt text](https://i.imgur.com/p9RyyHz.png?4)
 
 Only 5 lines of code are needed to set the constraints:
 ```swift
