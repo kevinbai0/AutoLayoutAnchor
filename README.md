@@ -7,27 +7,27 @@ Example of a login page created using AutoAnchorLayouts:
 
 Only 5 lines of code are needed to set the constraints:
 ```swift
-userTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([Anchor.centerY]), .height([0, 0.08]))
-passTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([userTextField, Anchor.bottom, 10]), .height([0, 0.08]))
-loginBtn.addToView(self, .centerX([]), .width([0,0.8]), .top([passTextField, Anchor.bottom, 10]), .height([0, 0.08]))
-forgotPasswordButton.addToView(self, .top([30, loginBtn, Anchor.bottom]), .centerX([]), .width([0, 0.6]), .height([30]))
-createAccountButton.addToView(self, .bottom([-20]), .centerX([]), .height([30]), .width([0, 0.6]))
+userTextField.addToView(self, .centerX(), .width(0,0.8), .top(Anchor.centerY), .height(0, 0.08))
+passTextField.addToView(self, .centerX(), .width(0,0.8), .top(userTextField, Anchor.bottom, 10), .height(0, 0.08))
+loginBtn.addToView(self, .centerX(), .width(0,0.8), .top(passTextField, Anchor.bottom, 10), .height(0, 0.08))
+forgotPasswordButton.addToView(self, .top(30, loginBtn, Anchor.bottom), .centerX(), .width(0, 0.6), .height(30))
+createAccountButton.addToView(self, .bottom(-20), .centerX(), .height(30), .width(0, 0.6))
 ```
 
 ## Example of usage:
 ```swift
 let view1 = UIView()
-view1.addToView(self.view, .left([10]), .right([-5, Anchor.centerX]), .top([28]), .bottom([Anchor.centerY, -10]))
+view1.addToView(self.view, .left(10), .right(-5, Anchor.centerX), .top(28), .bottom(Anchor.centerY, -10))
 ```
 
 or 
 
 ```swift
 view1.addToView(self.view, //adds view1 to self.view
-  .left([10]), //view1's left anchor is 10 points to the right of self.view's left anchor
-  .right([-5, Anchor.centerX]), //view1's right anchor is 5 points to the left of self.view's centerX anchor
-  .top([28]), //view1's top anchor is 28 points below of self.view's top anchor
-  .bottom([Anchor.centerY, -10]) //view1's bottom anchor is 10 points above self.view's centerY anchor
+  .left(10), //view1's left anchor is 10 points to the right of self.view's left anchor
+  .right(-5, Anchor.centerX), //view1's right anchor is 5 points to the left of self.view's centerX anchor
+  .top(28), //view1's top anchor is 28 points below of self.view's top anchor
+  .bottom(Anchor.centerY, -10) //view1's bottom anchor is 10 points above self.view's centerY anchor
 )
 ```
 These two lines of code create a UIView, adds it to the view, and creates the constraints
@@ -55,10 +55,10 @@ view1.addToView(self.view, //add to self.view
 ```
 `self.view` also becomes the default view to add constraints to.
 ```swift
-  .left([])
-  .right([])
-  .top([])
-  .bottom([])
+  .left()
+  .right()
+  .top()
+  .bottom()
 )
 ```
 
@@ -84,6 +84,6 @@ Currently, the supported values are:
 
 Although anything may be passed into the array, only the data types shown above are manipulated. Values can be passed into the array in any order but only 2 Number types (`CGFloat`, `Int`, `Float`, and `Double`) will be processed. The first number that is passed through is set as the constant. The second number passed through is set as the multiplier.
 
-*If you only want to pass a multiplier through, pass the value 0 (to set the constant to 0) before the multiplier value. Ex: `AutoLayoutAnchor.width([0, 0.5])`.*
+*If you only want to pass a multiplier through, pass the value 0 (to set the constant to 0) before the multiplier value. Ex: `AutoLayoutAnchor.width(0, 0.5)`.*
 
 # To Be Completed
