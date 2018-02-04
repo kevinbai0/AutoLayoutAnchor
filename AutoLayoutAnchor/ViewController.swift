@@ -9,19 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // view1 takes up the quadrant in the top left corner
         let view1 = UIView()
         view1.backgroundColor = .orange
-        view1.addToView(self.view, .left([10]), .right([-5, Anchor.centerX]), .top([28]), .bottom([Anchor.centerY, -10]))
+        view1.addToView(self.view, .left(10), .right(-5, Anchor.centerX), .top(28), .bottom(Anchor.centerY, -10))
         //view2 takes up quadrant in the top right corner
         let view2 = UIView()
         view2.backgroundColor = .red
-        view2.addToView(self.view, .left([Anchor.right, view1, 10]), .right([-10]), .top([view1]), .height([view1]))
- 
-        /* Same code to do with only NSLayoutAnchors
+        view2.addToView(self.view, .left(Anchor.right, view1, 10), .right(-10), .top(view1), .height(view1))
+        
+         /*Same code to do with only NSLayoutAnchors
          let view1 = UIView()
          view1.backgroundColor = .orange
          view1.translatesAutoresizingMaskIntoConstraints = false
@@ -39,14 +39,12 @@ class ViewController: UIViewController {
          view2.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
          view2.topAnchor.constraint(equalTo: view1.topAnchor).isActive = true
          view2.bottomAnchor.constraint(equalTo: view1.bottomAnchor).isActive = true
-         */
+        */
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
