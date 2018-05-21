@@ -1,0 +1,8 @@
+version: "Apple Swift version 4.1 (swiftlang-902.0.48 clang-902.0.37.1)"
+options: "f0d769f95151e3351a50eb3fc29f6f52"
+build_time: [1526941060, 108545000]
+inputs:
+  "/Volumes/kevinbai/Documents/Programming/XCodeProjects/libs/AutoLayoutAnchor/AutoLayoutAnchor/ViewController.swift": [1517765193, 0]
+  "/Volumes/kevinbai/Documents/Programming/XCodeProjects/libs/AutoLayoutAnchor/AutoLayoutAnchor/AppDelegate.swift": [1515221356, 0]
+  "/Volumes/kevinbai/Documents/Programming/XCodeProjects/libs/AutoLayoutAnchor/AutoLayoutExamples/LoginView.swift": [1515276714, 0]
+  "/Volumes/kevinbai/Documents/Programming/XCodeProjects/libs/AutoLayoutAnchor/AutoLayoutAnchor/AutoLayoutAnchor.swift": [1517764736, 0]
