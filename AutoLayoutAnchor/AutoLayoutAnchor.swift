@@ -8,214 +8,267 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    //add to subview and add constraints
-    func addToView(_ view: UIView, _ anchors: AutoAnchor...) {
-        view.addSubview(self)
-        self.addConstraints(to: view, anchors: anchors)
+private struct ALConstraintManager {
+    static var x1Constraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:] // default values
+    static var x2Constraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
+    static var widthConstraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
+    static var y1Constraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
+    static var y2Constraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
+    static var heightConstraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
+    
+    static func deactivateConstraints(identifier: String) {
+        ALConstraintManager.x1Constraint[identifier]?.1?.isActive = false
+        ALConstraintManager.x2Constraint[identifier]?.1?.isActive = false
+        ALConstraintManager.widthConstraint[identifier]?.1?.isActive = false
+        ALConstraintManager.y1Constraint[identifier]?.1?.isActive = false
+        ALConstraintManager.y2Constraint[identifier]?.1?.isActive = false
+        ALConstraintManager.heightConstraint[identifier]?.1?.isActive = false
     }
     
-    //set constraints
-    func setConstraints(to view: UIView? = nil,_ anchors: AutoAnchor...) {
-        addConstraints(to: view, anchors: anchors)
-    }
-    
-    //function to add constraints
-    private func addConstraints(to view: UIView? = nil, anchors: [AutoAnchor]) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        for anchor in anchors {
-            let _ = constraintFrom(anchor: anchor, to: view)
-        }
-    }
-    
-    func constraintFrom(anchor: AutoAnchor, to view: UIView? = nil) -> NSLayoutConstraint? {
-        var view = view
-        if let _ = view {
-            //do nothing
-        }
-        else if let supView = self.superview {
-            view = supView
-        }
-        let createdConstraint = AutoAnchor.createConstraint(firstAnchor: anchor, secondAnchor: anchor.firstAnchorType.getAnchor(view: self), originalView: view)
-        createdConstraint?.isActive = true
+    static func updateConstraints(identifier: String, constraints: [NSLayoutConstraint?], anchors: [ALAnchor], x1Index: Int?, x2Index: Int?, widthIndex: Int?, y1Index: Int?, y2Index: Int?, heightIndex: Int?) {
+        ALConstraintManager.deactivateConstraints(identifier: identifier)
         
-        return createdConstraint
+        if let x1 = x1Index {
+            ALConstraintManager.x1Constraint[identifier] = (anchors[x1], constraints[x1])
+            ALConstraintManager.x1Constraint[identifier]?.1?.isActive = true
+        }
+        if let x2 = x2Index {
+            ALConstraintManager.x2Constraint[identifier] = (anchors[x2], constraints[x2])
+            ALConstraintManager.x2Constraint[identifier]?.1?.isActive = true
+        }
+        else {
+            ALConstraintManager.x2Constraint[identifier] = nil
+        }
+        if let w = widthIndex {
+            ALConstraintManager.widthConstraint[identifier] = (anchors[w], constraints[w])
+            ALConstraintManager.widthConstraint[identifier]?.1?.isActive = true
+        }
+        else {
+            ALConstraintManager.widthConstraint[identifier] = nil
+        }
+        if let y1 = y1Index {
+            ALConstraintManager.y1Constraint[identifier] = (anchors[y1], constraints[y1])
+            ALConstraintManager.y1Constraint[identifier]?.1?.isActive = true
+        }
+        if let y2 = y2Index {
+            ALConstraintManager.y2Constraint[identifier] = (anchors[y2], constraints[y2])
+            ALConstraintManager.y2Constraint[identifier]?.1?.isActive = true
+        }
+        else {
+            ALConstraintManager.y2Constraint[identifier] = nil
+        }
+        if let h = heightIndex {
+            ALConstraintManager.heightConstraint[identifier] = (anchors[h], constraints[h])
+            ALConstraintManager.heightConstraint[identifier]?.1?.isActive = true
+        }
+        else {
+            ALConstraintManager.heightConstraint[identifier] = nil
+        }
     }
 }
 
-enum Anchor {
-    case leading, left, centerX, right, trailing, top, firstB, centerY, lastB, bottom, width, height
-    
-    func getAnchor(view: UIView) -> (NSLayoutXAxisAnchor?, NSLayoutYAxisAnchor?, NSLayoutDimension?) {
-        switch self {
-        case .leading:
-            return (view.leadingAnchor, nil, nil)
-        case .trailing:
-            return (view.trailingAnchor, nil, nil)
-        case .left:
-            return (view.leftAnchor, nil, nil)
-        case .right:
-            return (view.rightAnchor, nil, nil)
-        case .centerX:
-            return (view.centerXAnchor, nil, nil)
-        case .top:
-            return (nil, view.topAnchor, nil)
-        case .bottom:
-            return (nil, view.bottomAnchor, nil)
-        case .centerY:
-            return (nil, view.centerYAnchor, nil)
-        case .firstB:
-            return (nil, view.firstBaselineAnchor, nil)
-        case .lastB:
-            return (nil, view.lastBaselineAnchor, nil)
-        case .width:
-            return (nil, nil, view.widthAnchor)
-        case .height:
-            return (nil, nil, view.heightAnchor)
-        }
-    }
-}
-class AutoAnchor {
-    var firstAnchorType: Anchor
-    var content: [Any]
-    
-    class func leading(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .leading, content: content)
-    }
-    class func trailing(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .trailing, content: content)
-    }
-    class func left(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .left, content: content)
-    }
-    class func centerX(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .centerX, content: content)
-    }
-    class func right(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .right, content: content)
-    }
-    class func top(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .top, content: content)
-    }
-    class func firstB(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .firstB, content: content)
-    }
-    class func centerY(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .centerY, content: content)
-    }
-    class func lastB(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .lastB, content: content)
-    }
-    class func bottom(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .bottom, content: content)
-    }
-    class func width(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .width, content: content)
-    }
-    class func height(_ content: Any...) -> AutoAnchor {
-        return AutoAnchor(firstAnchorType: .height, content: content)
+extension UIView {
+    func addToView(_ view: UIView, _ anchors: ALAnchor...) {
+        view.addSubview(self) // view is now this view's superview
+        self.addConstraints(anchors: anchors)
     }
     
-    init(firstAnchorType: Anchor, content: [Any]) {
-        self.firstAnchorType = firstAnchorType
-        self.content = content
+    //set constraints
+    func setConstraints(_ anchors: ALAnchor...) {
+        addConstraints(anchors: anchors)
     }
     
-    /* class methods */
-    class func createConstraint(firstAnchor: AutoAnchor, secondAnchor: (NSLayoutXAxisAnchor?, NSLayoutYAxisAnchor?, NSLayoutDimension?), originalView: UIView?) -> NSLayoutConstraint? {
+    //function to add constraints
+    private func addConstraints(anchors: [ALAnchor]) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        // for each anchor view, if the view isn't nil, then it's anchorView to the view
+        var constraints: [NSLayoutConstraint?] = []
+        var x1Index: Int?, x2Index: Int?, widthIndex: Int?
+        var y1Index: Int?, y2Index: Int?, heightIndex: Int?
         
-        var originalView = originalView
-        var viewChanged = false, constantChanged = false, multiplierChanged = false
-        var constant: CGFloat = 0, multiplier: CGFloat = 1
-        
-        var anchor: Anchor?
-        var priority: UILayoutPriority = UILayoutPriority(1000)
-        for item in firstAnchor.content {
-            let itemAsUIView = item as? UIView
-            if let view = itemAsUIView {
-                if !viewChanged {
-                    originalView = view
-                    viewChanged = true
-                }
-            }
-            
-            var itemAsCGFloat: CGFloat?
-            if let num = item as? CGFloat { itemAsCGFloat = num }
-            if let num = item as? Int { itemAsCGFloat = CGFloat(num) }
-            if let num = item as? Double { itemAsCGFloat = CGFloat(num) }
-            if let num = item as? Float { itemAsCGFloat = CGFloat(num) }
-            
-            if let num = itemAsCGFloat {
-                if !constantChanged {
-                    constant = num
-                    constantChanged = true
-                }
-                else if !multiplierChanged {
-                    multiplier = num
-                    multiplierChanged = true
-                }
-            }
-            let itemAsAnchor = item as? Anchor
-            if let anc = itemAsAnchor {
-                anchor = anc
-            }
-            
-            let itemAsPriority = item as? UILayoutPriority
-            if let pri = itemAsPriority {
-                priority = pri
-            }
-        }
-        
-        //if array was empty and originalview is specified, then set anchor to specified view and same anchor
-        guard let view = originalView else {
-            //if there is no view set, then must be a width or height anchor with only a constant
-            guard let dimension = secondAnchor.2 else { return nil }
-            let c = dimension.constraint(equalToConstant: constant)
-            c.priority = priority
-            return c
-        }
-        
-        //get the constraint of view that originalView will be set to
-        var returnedConstraints: (NSLayoutXAxisAnchor?, NSLayoutYAxisAnchor?, NSLayoutDimension?)
-        if let type = anchor {
-            returnedConstraints = type.getAnchor(view: view)
-        }
-        else {
-            //if there is no anchor set, check and if current constraint is width and height anchor, then its position is simply set to static
-            if let dimension = secondAnchor.2  {
-                if multiplier != 1 || viewChanged || constant == 0 {
-                    returnedConstraints = firstAnchor.firstAnchorType.getAnchor(view: view)
-                    let c = dimension.constraint(equalTo: returnedConstraints.2!, multiplier: multiplier, constant: constant)
-                    c.priority = priority
-                    return c
+        for i in 0..<anchors.count {
+            if anchors[i].firstAnchorType.dimension == .x {
+                if x1Index == nil {
+                    x1Index = i
                 }
                 else {
-                    let c = dimension.constraint(equalToConstant: constant)
-                    c.priority = priority
-                    return c
+                    if anchors[i].firstAnchorType.rawValue < anchors[x1Index!].firstAnchorType.rawValue {
+                        x2Index = x1Index
+                        x1Index = i
+                    }
+                    else {
+                        x2Index = i
+                    }
                 }
-                
             }
-            //else go on
-            returnedConstraints = firstAnchor.firstAnchorType.getAnchor(view: view)
+            else if anchors[i].firstAnchorType.dimension == .y {
+                if y1Index == nil {
+                    y1Index = i
+                }
+                else {
+                    if anchors[i].firstAnchorType.rawValue < anchors[y1Index!].firstAnchorType.rawValue {
+                        y2Index = y1Index
+                        y1Index = i
+                    }
+                    else {
+                        y2Index = i
+                    }
+                }
+            }
+            else if anchors[i].firstAnchorType.dimension == .size {
+                if anchors[i].firstAnchorType == .width {
+                    widthIndex = i
+                }
+                else {
+                    heightIndex = i
+                }
+            }
+            
+            // create a constraint based on the anchors
+            constraints.append(addConstraint(anchor: anchors[i]))
         }
         
-        //set the constraint of this view to returned constraint
-        if let xAnchor = secondAnchor.0 {
-            let c = xAnchor.constraint(equalTo: returnedConstraints.0!, constant: constant)
-            c.priority = priority
-            return c
+        let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+
+        ALConstraintManager.updateConstraints(identifier: identifier, constraints: constraints, anchors: anchors, x1Index: x1Index, x2Index: x2Index, widthIndex: widthIndex, y1Index: y1Index, y2Index: y2Index, heightIndex: heightIndex)
+        
+        // only accceptable constraint values
+        // 2 x anchors and 0 width ones, or 1 x anchor and 1 width anchor
+        // 2 y anchors and 0 height ones, or 1 y anchor and 1 height anchor
+    }
+    
+    var x1Anchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.x1Constraint[identifier]?.0
         }
-        else if let yAnchor = secondAnchor.1 {
-            let c = yAnchor.constraint(equalTo: returnedConstraints.1!, constant: constant)
-            c.priority = priority
-            return c
-        }
-        else {
-            //for width dimensions
-            let c = secondAnchor.2?.constraint(equalTo: returnedConstraints.2!, multiplier: multiplier, constant: constant)
-            c?.priority = priority
-            return c
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.x1Constraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.x1Constraint[identifier] = (newValue, constraint)
         }
     }
+    var x2Anchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.x2Constraint[identifier]?.0
+        }
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.x2Constraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.x2Constraint[identifier] = (newValue, constraint)
+        }
+    }
+    
+    var widthALAnchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.widthConstraint[identifier]?.0
+        }
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.widthConstraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.widthConstraint[identifier] = (newValue, constraint)
+        }
+    }
+    
+    var y1Anchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.y1Constraint[identifier]?.0
+        }
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.y1Constraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.y1Constraint[identifier] = (newValue, constraint)
+        }
+    }
+    var y2Anchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.y2Constraint[identifier]?.0
+        }
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.y2Constraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.y2Constraint[identifier] = (newValue, constraint)
+        }
+    }
+    var heightALAnchor: ALAnchor? {
+        get {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return ALConstraintManager.heightConstraint[identifier]?.0
+        }
+        set {
+            let identifier = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            guard let newAnchor = newValue else { return }
+            ALConstraintManager.heightConstraint[identifier]?.1?.isActive = false
+            let constraint = self.addConstraint(anchor: newAnchor)
+            constraint?.isActive = true
+            ALConstraintManager.heightConstraint[identifier] = (newValue, constraint)
+        }
+    }
+    
+    
+    
+    func addConstraint(anchor: ALAnchor) -> NSLayoutConstraint? {
+        // if the anchor's anchor view is not specified, than set it to it's superview (if no superview, then it will be nil)
+        if anchor.secondView == nil {
+            if let superView = self.superview {
+                anchor.secondView = superView
+            }
+        }
+        // each anchor's first view is self
+        anchor.anchorView = self
+        
+        let createdConstraint = ALAnchor.createConstraint(anchor: anchor)
+        return createdConstraint
+    }
+    
+    func xLayoutAnchor(anchorType: AnchorType) -> NSLayoutXAxisAnchor? {
+        if anchorType.dimension == .x {
+            if anchorType == .left { return self.leftAnchor }
+            else if anchorType == .right { return self.rightAnchor }
+            else if anchorType == .leading { return self.leadingAnchor }
+            else if anchorType == .trailing { return self.trailingAnchor }
+            else if anchorType == .centerX { return self.centerXAnchor }
+        }
+        return nil
+    }
+    func yLayoutAnchor(anchorType: AnchorType) -> NSLayoutYAxisAnchor? {
+        if anchorType.dimension == .y {
+            if anchorType == .top { return self.topAnchor }
+            else if anchorType == .firstB { return self.firstBaselineAnchor }
+            else if anchorType == .centerY { return self.centerYAnchor }
+            else if anchorType == .lastB { return self.lastBaselineAnchor }
+            else if anchorType == .bottom { return self.bottomAnchor }
+        }
+        return nil
+    }
+    
+    func dimensionLayoutAnchor(anchorType: AnchorType) -> NSLayoutDimension? {
+        if anchorType.dimension == .size {
+            if anchorType == .width { return self.widthAnchor }
+            else if anchorType == .height { return self.heightAnchor }
+
+        }
+        return nil
+    }
 }
+
+

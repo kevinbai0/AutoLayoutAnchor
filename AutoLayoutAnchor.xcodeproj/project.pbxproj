@@ -16,6 +16,11 @@
 		486474542000A8ED0052352A /* AutoLayoutAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486474532000A8ED0052352A /* AutoLayoutAnchorTests.swift */; };
 		4864745F2000A8ED0052352A /* AutoLayoutAnchorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4864745E2000A8ED0052352A /* AutoLayoutAnchorUITests.swift */; };
 		4864746D2000AAD40052352A /* AutoLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */; };
+		48A7446620B380DE0012F0F7 /* AnchorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A7446520B380DE0012F0F7 /* AnchorType.swift */; };
+		48A7446820B3811E0012F0F7 /* ALAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A7446720B3811E0012F0F7 /* ALAnchor.swift */; };
+		48A7446A20B381CA0012F0F7 /* AnchorDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A7446920B381CA0012F0F7 /* AnchorDimension.swift */; };
+		48A7446C20B383F00012F0F7 /* AnchorProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A7446B20B383F00012F0F7 /* AnchorProperty.swift */; };
+		48A7446E20B384720012F0F7 /* ALAnchorInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A7446D20B384720012F0F7 /* ALAnchorInitializers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		4864745E2000A8ED0052352A /* AutoLayoutAnchorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutAnchorUITests.swift; sourceTree = "<group>"; };
 		486474602000A8ED0052352A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutAnchor.swift; sourceTree = "<group>"; };
+		48A7446520B380DE0012F0F7 /* AnchorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorType.swift; sourceTree = "<group>"; };
+		48A7446720B3811E0012F0F7 /* ALAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALAnchor.swift; sourceTree = "<group>"; };
+		48A7446920B381CA0012F0F7 /* AnchorDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDimension.swift; sourceTree = "<group>"; };
+		48A7446B20B383F00012F0F7 /* AnchorProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorProperty.swift; sourceTree = "<group>"; };
+		48A7446D20B384720012F0F7 /* ALAnchorInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALAnchorInitializers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +122,12 @@
 			children = (
 				4864743E2000A8EC0052352A /* AppDelegate.swift */,
 				486474402000A8EC0052352A /* ViewController.swift */,
+				48A7446520B380DE0012F0F7 /* AnchorType.swift */,
 				4864746C2000AAD40052352A /* AutoLayoutAnchor.swift */,
+				48A7446720B3811E0012F0F7 /* ALAnchor.swift */,
+				48A7446D20B384720012F0F7 /* ALAnchorInitializers.swift */,
+				48A7446920B381CA0012F0F7 /* AnchorDimension.swift */,
+				48A7446B20B383F00012F0F7 /* AnchorProperty.swift */,
 				486474422000A8EC0052352A /* Main.storyboard */,
 				486474452000A8EC0052352A /* Assets.xcassets */,
 				486474472000A8EC0052352A /* LaunchScreen.storyboard */,
@@ -274,9 +289,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				486474412000A8EC0052352A /* ViewController.swift in Sources */,
+				48A7446C20B383F00012F0F7 /* AnchorProperty.swift in Sources */,
 				4864743F2000A8EC0052352A /* AppDelegate.swift in Sources */,
 				4841C83F20016ABA002A12D7 /* LoginView.swift in Sources */,
+				48A7446E20B384720012F0F7 /* ALAnchorInitializers.swift in Sources */,
+				48A7446620B380DE0012F0F7 /* AnchorType.swift in Sources */,
 				4864746D2000AAD40052352A /* AutoLayoutAnchor.swift in Sources */,
+				48A7446A20B381CA0012F0F7 /* AnchorDimension.swift in Sources */,
+				48A7446820B3811E0012F0F7 /* ALAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

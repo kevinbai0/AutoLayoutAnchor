@@ -19,11 +19,7 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //add to subview and set constraints from bottom up
-        userTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([Anchor.centerY]), .height([0, 0.08]))
-        passTextField.addToView(self, .centerX([]), .width([0,0.8]), .top([userTextField, Anchor.bottom, 10]), .height([0, 0.08]))
-        loginBtn.addToView(self, .centerX([]), .width([0,0.8]), .top([passTextField, Anchor.bottom, 10]), .height([0, 0.08]))
-        forgotPasswordButton.addToView(self, .top([30, loginBtn, Anchor.bottom]), .centerX([]), .width([0, 0.6]), .height([30]))
-        createAccountButton.addToView(self, .bottom([-20]), .centerX([]), .height([30]), .width([0, 0.6]))
+
         //all constraints are done! Only thing needed is to style the view
     }
     

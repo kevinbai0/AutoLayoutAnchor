@@ -9,36 +9,46 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let view2 = UIView()
+    let button1 = UIButton(type: .system)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // view1 takes up the quadrant in the top left corner
         let view1 = UIView()
         view1.backgroundColor = .orange
-        view1.addToView(self.view, .left(10), .right(-5, Anchor.centerX), .top(28), .bottom(Anchor.centerY, -10))
+        view1.addToView(self.view, .left(10.pad), .right(.centerX), .height(30.constant), .bottom(10.pad))
         //view2 takes up quadrant in the top right corner
-        let view2 = UIView()
         view2.backgroundColor = .red
-        view2.addToView(self.view, .left(Anchor.right, view1, 10), .right(-10), .top(view1), .height(view1))
+        view2.addToView(self.view, .left(view1.right, 10.pad), .right(10.pad), .top(.centerY), .bottom(10.pad))
         
-         /*Same code to do with only NSLayoutAnchors
-         let view1 = UIView()
-         view1.backgroundColor = .orange
-         view1.translatesAutoresizingMaskIntoConstraints = false
-         self.view.addSubview(view1)
-         view1.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
-         view1.rightAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -5).isActive = true
-         view1.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 28).isActive = true
-         view1.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -10).isActive = true
-         
-         let view2 = UIView()
-         view2.backgroundColor = .red
-         view2.translatesAutoresizingMaskIntoConstraints = false
-         self.view.addSubview(view2)
-         view2.leftAnchor.constraint(equalTo: view1.rightAnchor, constant: 10).isActive = true
-         view2.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
-         view2.topAnchor.constraint(equalTo: view1.topAnchor).isActive = true
-         view2.bottomAnchor.constraint(equalTo: view1.bottomAnchor).isActive = true
-        */
+        button1.addToView(self.view, .bottom(5.pad), .centerX, .width(5.ratio), .height(30.constant))
+        button1.setTitle("Animate me", for: [])
+        button1.addTarget(self, action: #selector(animateCoolStuff), for: .touchUpInside)
+    }
+    @objc func animateCoolStuff() {
+        UIView.animateKeyframes(withDuration: 2.0, delay: 0, options: UIViewKeyframeAnimationOptions.layoutSubviews, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.2, animations: {
+                self.view2.y1Anchor = .top(10.pad)
+                self.view.layoutIfNeeded()
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.8, animations: {
+                self.view2.x2Anchor = .right(10.pad)
+                self.view.layoutIfNeeded()
+            })
+        }) { (Bool) in
+            
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view2.x1Anchor = .left(10.pad)
+        view2.x2Anchor = .right(.centerX)
+        
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
     }
 
     override func didReceiveMemoryWarning() {
