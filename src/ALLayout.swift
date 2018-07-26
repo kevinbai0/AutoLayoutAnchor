@@ -16,6 +16,7 @@ private struct ALConstraintManager {
     static var heightConstraint: [String: (ALAnchor?, NSLayoutConstraint?)] = [:]
     
     static func deactivateConstraints(identifier: String) {
+        
         ALConstraintManager.x1Constraint[identifier]?.1?.isActive = false
         ALConstraintManager.x2Constraint[identifier]?.1?.isActive = false
         ALConstraintManager.widthConstraint[identifier]?.1?.isActive = false
